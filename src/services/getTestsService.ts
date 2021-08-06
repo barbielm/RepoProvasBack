@@ -26,14 +26,14 @@ export async function getDisciplines(){
     return response;
 }
 
-export async function getTestsByProfessor(id: number){
-    const tests = await getRepository(Test).find({relations: ["category"] , order:{categoryId: "ASC"}});
-    const professorTests = tests.filter(test => test.professorId === id);
+export async function getTestsByProfessor(name: string){
+    const tests = await getRepository(Test).find({relations: ["category","professor","discipline"] , order:{categoryId: "ASC"}});
+    const professorTests = tests.filter(test => test.professor.name.toLowerCase().trim() === name.toLowerCase().trim());
     return professorTests;
 }
 
 export async function getTestsByDiscipline(id: number){
-    const tests = await getRepository(Test).find({relations: ["category"] , order:{categoryId: "ASC"}});
+    const tests = await getRepository(Test).find({relations: ["category","professor","discipline"] , order:{categoryId: "ASC"}});
     const disciplineTests = tests.filter(test => test.disciplineId === id);
     return disciplineTests;
 }

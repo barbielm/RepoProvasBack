@@ -6,17 +6,16 @@ import "reflect-metadata";
 
 import connectDatabase from "./database";
 
-import * as userController from "./controllers/userConroller";
-
 import * as insertController from "./controllers/insertController"
 
 import * as getTestsController from "./controllers/getTestsController"
+
+import * as getInformationsController from "./controllers/getInformationsController";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/users", userController.getUsers);
 
 app.post("/newprofessor", insertController.professorController)
 
@@ -26,13 +25,15 @@ app.post("/newdiscipline", insertController.disciplineController)
 
 app.post("/newtest", insertController.testController)
 
-app.get("/professors", getTestsController.getProfessorsController)
+app.get("/tests-professor", getTestsController.getProfessorsController)
 
-app.get("/disciplines", getTestsController.getDisciplinesController)
+app.get("/tests-discipline", getTestsController.getDisciplinesController)
 
-app.get("/testsbyprofessor/:professorId", getTestsController.getTestsByProfessorController)
+app.get("/tests-by-professor/:professorName", getTestsController.getTestsByProfessorController)
 
-app.get("/testsbydiscipline/:disciplineId", getTestsController.getTestsByDisciplineController)
+app.get("/tests-by-discipline/:disciplineId", getTestsController.getTestsByDisciplineController)
+
+app.get("/informations", getInformationsController.informationsController)
 
 export async function init () {
   await connectDatabase();

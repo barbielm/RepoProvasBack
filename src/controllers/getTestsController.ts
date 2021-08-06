@@ -14,8 +14,8 @@ export async function getDisciplinesController(req: Request, res: Response){
 }
 
 export async function getTestsByProfessorController(req: Request, res: Response){
-    const id = req.params.professorId;
-    const tests =  await getTestsService.getTestsByProfessor(+id);
+    const name = req.params.professorName;
+    const tests =  await getTestsService.getTestsByProfessor(name);
     res.send(tests);
 }
 
