@@ -11,6 +11,18 @@ export default class Test {
     @Column()
     name: string;
 
+    @Column()
+    pdf: string;
+
+    @Column()
+    categoryId: number;
+
+    @Column()
+    professorId: number;
+
+    @Column()
+    disciplineId: number;
+    
     @ManyToOne(() => Category, category => category.tests )
     category: Category;
 
@@ -20,6 +32,4 @@ export default class Test {
     @ManyToOne(() => Discipline, discipline => discipline.tests )
     discipline: Discipline;
     
-    @Column()
-    pdf: string;
 }

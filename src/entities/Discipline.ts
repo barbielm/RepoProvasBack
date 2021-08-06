@@ -10,6 +10,9 @@ export default class Discipline{
     @Column()
     name: string;
 
+    @Column()
+    semester: string;
+
     @OneToMany(() => Professor, professor => professor.discipline)
     professors: Professor[];
 

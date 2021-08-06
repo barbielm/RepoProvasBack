@@ -10,6 +10,9 @@ export default class Professor{
     @Column()
     name: string;
 
+    @Column()
+    disciplineId: number
+
     @ManyToOne(() => Discipline, discipline => discipline.professors )
     discipline: Discipline;
 
