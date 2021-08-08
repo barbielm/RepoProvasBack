@@ -46,12 +46,15 @@ export async function disciplineController(req: Request, res: Response){
 
 export async function testController(req: Request, res: Response){
     try{
+        
         const newTest: TestStruct = req.body;
+        newTest.pdf = req.file.originalname;
+        console.log(newTest);
         if(newTest.name === "" || newTest.pdf === "" || newTest.categoryName === "" || isNaN(newTest.professorId) || isNaN(newTest.disciplineId)) return res.sendStatus(400);
         const success = await insertService.insertTest(newTest);
         
         if(success) return res.sendStatus(201)
-        else return res.sendStatus(400);
+        else return res.sendStatus(400); 
 
     } catch(e){
         console.log(e)

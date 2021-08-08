@@ -30,6 +30,9 @@ export async function insertDiscipline(newDiscipline: DisciplineStruct){
 } 
 
 export async function insertTest(newTest: TestStruct){
+    const checkCopy = await getRepository(Test).find({name: newTest.pdf});
+    if(checkCopy.length > 0) return false
+    
     const year = +newTest.name.substring(0,4);
     const semester = +newTest.name.substring(5,);
     
@@ -40,6 +43,8 @@ export async function insertTest(newTest: TestStruct){
     const disciplines = await getRepository(Discipline).find({id: newTest.disciplineId});
     
     if(professors.length === 0 || categories.length === 0 || disciplines.length === 0) return false;
+
+    if(professors[0].disciplineId !== disciplines[0].id) return false;
     
     const test = new Test();
     test.name = newTest.name.substring(0,4) + "." + newTest.name.substring(5,);

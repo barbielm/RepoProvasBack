@@ -1,4 +1,6 @@
 import { getRepository } from "typeorm";
+import {Response} from "express";
+import fs from "fs";
 import Test from "../entities/Test";
 import Professor from "../entities/Professor";
 import Discipline from "../entities/Discipline";
@@ -36,4 +38,11 @@ export async function getTestsByDiscipline(id: number){
     const tests = await getRepository(Test).find({relations: ["category","professor","discipline"] , order:{categoryId: "ASC"}});
     const disciplineTests = tests.filter(test => test.disciplineId === id);
     return disciplineTests;
+}
+
+export function checkTest(fileName: string, path: string){
+    
+    if(fs.existsSync(path)) return true
+    return false
+
 }
