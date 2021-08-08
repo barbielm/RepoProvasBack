@@ -30,9 +30,6 @@ export async function insertDiscipline(newDiscipline: DisciplineStruct){
 } 
 
 export async function insertTest(newTest: TestStruct){
-    const checkCopy = await getRepository(Test).find({name: newTest.pdf});
-    if(checkCopy.length > 0) return false
-    
     const year = +newTest.name.substring(0,4);
     const semester = +newTest.name.substring(5,);
     

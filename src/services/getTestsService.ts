@@ -24,7 +24,7 @@ export async function getDisciplines(){
         const discipline = {...disciplines[i], numberOfTests: tests.length};
         response.push(discipline);
     }
-    console.log(response);
+    
     return response;
 }
 

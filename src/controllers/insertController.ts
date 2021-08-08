@@ -49,7 +49,7 @@ export async function testController(req: Request, res: Response){
         
         const newTest: TestStruct = req.body;
         newTest.pdf = req.file.originalname;
-        console.log(newTest);
+        
         if(newTest.name === "" || newTest.pdf === "" || newTest.categoryName === "" || isNaN(newTest.professorId) || isNaN(newTest.disciplineId)) return res.sendStatus(400);
         const success = await insertService.insertTest(newTest);
         
